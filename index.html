@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #ffe6e6;
+      font-family: Arial, sans-serif;
+    }
+
+    .envelope {
+      width: 300px;
+      height: 200px;
+      background: #ff4d4d;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .envelope:hover {
+      transform: scale(1.05);
+    }
+
+    .envelope.open .envelope-flap {
+      transform: rotateX(180deg);
+    }
+
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ff6666;
+      clip-path: polygon(0 0, 50% 50%, 100% 0);
+      z-index: 2;
+      transition: transform 0.5s;
+      transform-origin: top;
+    }
+
+    .card {
+      position: absolute;
+      width: 280px;
+      height: 180px;
+      background: white;
+      top: 10px;
+      left: 10px;
+      padding: 20px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.5s;
+      z-index: 1;
+    }
+
+    .envelope.open .card {
+      opacity: 1;
+    }
+
+    .photos {
+      display: flex;
+      justify-content: space-around;
+      margin: 10px 0;
+    }
+
+    .photo {
+      width: 100px;
+      height: 100px;
+      background: #ddd;
+      margin: 5px;
+    }
+
+    .message {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #ff4d4d;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="envelope" onclick="openEnvelope(this)">
+    <div class="envelope-flap"></div>
+    <div class="card">
+      <div class="photos">
+        <img class="photo" src="asis1" alt="First photo">
+        <img class="photo" src="didi1" alt="Second photo">
+      </div>
+      <div class="message">
+        La mulți ani, Bebe! ❤️<br>
+        Te iubesc enorm de multt!
+      </div>
+      <audio controls>
+        <source src="horse.ogg" type="audio/mp3"> 
+      </audio>
+    </div>
+  </div>
+
+  <script>
+    function openEnvelope(envelope) {
+      envelope.classList.toggle('open');
+      const audio = document.getElementById('music');
+      if (envelope.classList.contains('open')) {
+        audio.play();
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    }
+  </script>
+</body>
+</html>
